@@ -11,15 +11,14 @@ create index actor_frst_fk on actor (id) include (name);
 # create films scripts 
 
 create table films (
-	id integer,
+	id integer primary key,
 	name text,
 	actor_id integer references actor (id),
 	country_id integer references country (id),
 	director_id integer references director (id),
 	genre_id integer references genre (id),
 	producer_id integer references producer (id),
-	year_id integer references year (id),
-	PRIMARY KEY (id, name)
+	year_id integer references year (id)
 )
 
 
