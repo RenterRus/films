@@ -17,18 +17,22 @@ create table year (
 # create films scripts 
 
 create table films (
-	id integer,
-	name text,
-	actor_id integer,
-	country_id integer,
-	director_id integer,
-	genre_id integer,
-	producer_id integer,
-	year_id integer,
-	primary key(id, name)
+	id integer primary key,
+	name text not null,
+	actor integer[] not null,
+	country integer[] not null,
+	director integer[] not null,
+	genre integer[] not null,
+	producer integer[] not null,
+	year integer not null
 )
 
-create index fk_films_year on films (year_id)
+create index fk_films_actor on films (actor);
+create index fk_films_country on films (country);
+create index fk_films_director on films (director);
+create index fk_films_genre on films (genre);
+create index fk_films_producer on films (producer);
+create index fk_films_year on films (year);
 
 # querys
 
