@@ -34,6 +34,28 @@ create index fk_films_genre on films (genre);
 create index fk_films_producer on films (producer);
 create index fk_films_year on films (year);
 
+---
+v3
+
+select films.name as film, films.year as year, 
+	actor.name as actor, director.name as director,
+	producer.name as producer, country.name as country,
+	genre.name as genre 
+	from films
+
+	join (select films_actor.films_id, actor.name from films_actor 
+join actor on films_actor.actor_id = actor.id) actor on actor.films_id = films.id 
+	join (select films_director.films_id, director.name from films_director 
+join director on films_director.director_id = director.id) director on director.films_id = films.id 
+	join (select films_producer.films_id, producer.name from films_producer 
+join producer on films_producer.producer_id = producer.id) producer on producer.films_id = films.id 
+		join (select films_country.films_id, country.name from films_country 
+join country on films_country.country_id = country.id) country on country.films_id = films.id 
+		join (select films_genre.films_id, genre.name from films_genre 
+join genre on films_genre.genre_id = genre.id) genre on genre.films_id = films.id 
+	;
+
+
 # querys
 
 
